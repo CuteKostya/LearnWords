@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestApp1.Views.CardMethodPage"
+             xmlns:models="clr-namespace:TestApp1.Models;assembly=TestApp1"
+             Shell.PresentationMode="Animated"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
+            Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">Green</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <CarouselView 
+            x:Name="TheCarousel"
+            ItemsSource="{Binding Items}"
+            IndicatorView ="indicatorview">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Item">
+                    <AbsoluteLayout>
+                        <StackLayout
+                            AbsoluteLayout.LayoutBounds="0.5,0.3,AutoSize,AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" 
+                            HorizontalOptions="Center">
+                            <Label 
+                                Text="{Binding Translation} " 
+                                FontSize="40" 
+                                HorizontalOptions="Center" 
+                                HorizontalTextAlignment="Center" />
+                            <Label 
+                                Text="{Binding Word} " 
+                                FontSize="30" 
+                                HorizontalOptions="Center" 
+                                HorizontalTextAlignment="Center" />
+                            <Grid Padding="40" x:Name="MainGrid" VerticalOptions="StartAndExpand">
+                                <Button Text="Знаю" Command="{Binding }" HorizontalOptions="Center"></Button>
+                                <Button Grid.Column="1" Text="На изучение" Command="{Binding }" HorizontalOptions="Center"></Button>
+                            </Grid>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView 
+            x:Name="indicatorview" 
+            AbsoluteLayout.LayoutBounds="0.5,0.95,300,100" 
+            AbsoluteLayout.LayoutFlags="PositionProportional" 
+            IndicatorColor="LightGray" 
+            IndicatorSize="10"
+            SelectedIndicatorColor="Black"  />
+    </AbsoluteLayout>
+</ContentPage>

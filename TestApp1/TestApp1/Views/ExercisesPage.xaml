@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestApp1.Views.ExercisesPage"
+             xmlns:vm="clr-namespace:TestApp1.ViewModels"
+             xmlns:local="clr-namespace:TestApp1.ViewModels"  
+             xmlns:model="clr-namespace:TestApp1.Models"  
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:ExercisesViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">Green</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="25,12">
+                <Label Text="Упражнения!" FontSize="Title" TextColor="{StaticResource Accent}"/>
+                <Button Text="Карточки" Command="{Binding CardMethodCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Выбор перевода" Command="{Binding ChoiceMethodCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Угадать перевод" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Выбор слова" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Написание" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Конструктор" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Аудио-тест" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Аудио-Выбор перевода" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Аудио-Выбор слова" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Аудио-Написание" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

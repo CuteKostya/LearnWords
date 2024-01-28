@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestApp1.Views.EditDetailPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Item"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Word:" FontSize="Medium" />
+        <Entry Text="{Binding Word, Mode=TwoWay}" FontSize="Medium" />
+        <Label Text="Translation:" FontSize="Medium" />
+        <Editor Text="{Binding Translation, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding EditCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

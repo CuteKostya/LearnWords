@@ -1,0 +1,9 @@
+/TestApp1/TestApp1.Android/bin
+/TestApp1/TestApp1.Android/obj
+/.vs
+/TestApp1/TestApp1.iOS/bin
+/TestApp1/TestApp1.iOS/obj
+/TestApp1/TestApp1/bin
+/TestApp1/TestApp1/obj
+/TestApp1/TestApp1.Android/*.user
+/TestApp1/TestApp1/*.user

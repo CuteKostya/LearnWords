@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestApp1.Views.ChoiceMethodPage"
+             xmlns:models="clr-namespace:TestApp1.Models;assembly=TestApp1"
+             xmlns:viewModels="clr-namespace:TestApp1.ViewModels;assembly=TestApp1"
+             xmlns:convert="clr-namespace:TestApp1.Convert;assembly=TestApp1"
+             Shell.PresentationMode="Animated"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
+             x:DataType="viewModels:ChoiceMethodViewModel"
+            Title="{Binding Title}">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <models:FillingsClassChoiceButtonIMultiValueConverter x:Key="ColorButtonIMultiValueConverter" />
+            <convert:ColorChangeIMultiValueConverter x:Key="ColorChangeIMultiValueConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <CarouselView 
+            x:Name="TheCarousel"
+            ItemsSource="{Binding Choices}"
+            IndicatorView ="indicatorview">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Choice">
+                    <AbsoluteLayout>
+                        <StackLayout
+                            AbsoluteLayout.LayoutBounds="0.5,-0.9,AutoSize,AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional" 
+                            HorizontalOptions="Center">
+                            <Label 
+                                Text="{Binding Word}"
+                                FontSize="40" 
+                                HorizontalOptions="Center" 
+                                HorizontalTextAlignment="Center" />
+                            <CollectionView ItemsSource="{Binding MassTranslation}">
+                                <CollectionView.ItemTemplate >
+                                    <DataTemplate x:DataType="x:String">
+                                        <StackLayout Padding="2" >
+                                            <Button Text="{Binding .}"
+                                                FontSize="20"
+                                                Command="{Binding Source={RelativeSource 
+                                                    AncestorType={x:Type viewModels:ChoiceMethodViewModel}},
+                                                    Path=TranslationCheckCommand}"
+                                                HorizontalOptions="FillAndExpand">
+                                                <Button.CommandParameter>
+                                                    <MultiBinding Converter="{StaticResource ColorButtonIMultiValueConverter}">
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type models:Choice}}" />
+                                                        <Binding Path="." />
+                                                    </MultiBinding>
+                                                </Button.CommandParameter>
+                                                <Button.BackgroundColor>
+                                                    <MultiBinding Converter="{StaticResource ColorChangeIMultiValueConverter}">
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type models:Choice}}" />
+                                                        <Binding Path="." />
+                                                        <Binding Source="{RelativeSource AncestorType={x:Type models:Choice}}" Path="PressedButton" />
+                                                    </MultiBinding>
+                                                </Button.BackgroundColor>
+                                            </Button>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </AbsoluteLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView 
+            x:Name="indicatorview" 
+            AbsoluteLayout.LayoutBounds="0.5,0.95,300,100" 
+            AbsoluteLayout.LayoutFlags="PositionProportional" 
+            IndicatorColor="LightGray" 
+            IndicatorSize="10"
+            SelectedIndicatorColor="Black"  />
+    </AbsoluteLayout>
+
+</ContentPage>
